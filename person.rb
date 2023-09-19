@@ -1,4 +1,6 @@
 require './nameable'
+require './capitalize'
+require './trimmer'
 
 class Person < Nameable
   attr_accessor :name, :age
@@ -24,31 +26,6 @@ class Person < Nameable
 
   def of_age?
     true if @age >= 18
-  end
-end
-
-class Decorator < Nameable
-  attr_accessor :nameable_object
-
-  def initialize(nameable_object)
-    super()
-    @nameable_object = nameable_object
-  end
-
-  def correct_name
-    @nameable_object.correct_name
-  end
-end
-
-class CapitalizeDecorator < Decorator
-  def correct_name
-    @nameable_object.correct_name.capitalize
-  end
-end
-
-class TrimmerDecorator < Decorator
-  def correct_name
-    @nameable_object.correct_name[0, 10]
   end
 end
 
