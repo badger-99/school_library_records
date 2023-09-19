@@ -38,3 +38,13 @@ class Decorator < Nameable
   end
 end
 
+class CapitalizeDecorator < Decorator
+  def correct_name
+    @nameable_object.correct_name.capitalize
+  end
+end
+
+person = Person.new(22, 'maximilianus')
+puts person.correct_name
+capitalized_person = CapitalizeDecorator.new(person)
+puts capitalized_person.correct_name
