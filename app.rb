@@ -20,20 +20,21 @@ class App
     @student_list.push(student)
   end
 
-  def retrieve_students
-    @student_list
-  end
-
   def create_teacher(age, name, specialization)
     teacher = Teacher.new(age, name, specialization)
     @teacher_list.push(teacher)
   end
 
-  def retrieve_teachers
-    @teacher_list
+  def create_book(title, author)
+    book = Book.new(title, author)
+    @book_list.push(book)
   end
 
   def retrieve_people
     @student_list + @teacher_list
+  end
+
+  def retrieve_books
+    @book_list
   end
 end
