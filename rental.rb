@@ -6,9 +6,17 @@ class Rental
     @date = date
 
     @person = person
-    person.rental << self
+    person.add_rental(self) if person.respond_to?(:add_rental)
 
     @book = book
-    book.rental << self
+    book.add_rental(self) if book.respond_to?(:add_rental)
+  end
+
+  def title
+    @book.retrieve_title
+  end
+
+  def author
+    @book.retrieve_author
   end
 end
