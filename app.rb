@@ -14,4 +14,12 @@ class App
     @classroom = Classroom.new('S-class')
   end
 
+  def create_student(age, name, permission)
+    student = Student.new(age, name, @classroom, parent_permission: permission)
+    @studentList.push(student)
+  end
+
+  def retrieve_students
+    @studentList
+  end
 end 
