@@ -7,6 +7,9 @@ app.create_student(16, 'Tanjiro', false)
 list = app.retrieve_students
 puts list[1].name
 
+app.create_teacher(66, 'Sheev', 'Sith')
+puts app.retrieve_teachers[0].name
+
 # require './person'
 # require './student'
 # require './teacher'
