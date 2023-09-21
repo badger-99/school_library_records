@@ -18,8 +18,8 @@ book = app.create_book('A book', 'John Doe')
 app.create_book('A sequel', 'Jane Doe')
 
 books = app.retrieve_books
-books.each do |book|
-  puts "Title: #{book.title}, Author: #{book.author}"
+books.each do |volume|
+  puts "Title: #{volume.title}, Author: #{volume.author}"
 end
 
 date = '2023/09/21'
