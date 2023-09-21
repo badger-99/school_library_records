@@ -23,4 +23,13 @@ class App
   def retrieve_students
     @student_list
   end
+
+  def create_teacher(age, name, specialization)
+    teacher = Teacher.new(age, name, specialization)
+    @teacher_list.push(teacher)
+  end
+
+  def retrieve_teachers
+    @teacher_list
+  end
 end
