@@ -1,14 +1,11 @@
 require './app'
 
-app = App.new()
+app = App.new
 
 app.create_student(18, 'Ichigo', true)
 app.create_student(16, 'Tanjiro', false)
 list = app.retrieve_students
 puts list[1].name
-
-
-
 
 # require './person'
 # require './student'
