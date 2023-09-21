@@ -33,6 +33,31 @@ rentals.each do |rental|
   puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author} ID: #{rental.id}"
 end
 
+def main
+  app = App.new()
+  selection = 0
+  while selection != 7
+    case(selection)
+    when 0
+      puts menu
+    when 1
+      # List all books
+    when 2
+      # list all the people
+    when 3
+      # create a person
+    when 4
+      # create a book
+    when 5
+      # create a rental
+    when 6
+      # list all rentals for a given ID
+    when 7
+      # exit loop
+    end
+  end
+end
+
 # require './person'
 # require './student'
 # require './teacher'
