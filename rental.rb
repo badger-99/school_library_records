@@ -13,10 +13,11 @@ class Rental
   end
 
   def title
-    @book.retrieve_title
+    @book.title
   end
 
   def author
-    @book.retrieve_author
+    @book.author
+  end
   end
 end
