@@ -18,11 +18,13 @@ class App
   def create_student(age, name, permission)
     student = Student.new(age, name, @classroom, parent_permission: permission)
     @student_list.push(student)
+    student
   end
 
   def create_teacher(age, name, specialization)
     teacher = Teacher.new(age, name, specialization)
     @teacher_list.push(teacher)
+    teacher
   end
 
   def create_book(title, author)
