@@ -1,15 +1,22 @@
 class Book
   attr_accessor :title, :author
-  attr_reader :rental
+  attr_reader :rentals
 
   def initialize(title, author)
     @title = title
     @author = author
-    @rental = []
+    @rentals = []
   end
 
   def add_rental(rental)
-    @rental.push(rental)
-    rental.book = self
+    @rentals.push(rental)
+  end
+
+  def retrieve_title
+    @title
+  end
+
+  def retrieve_author
+    @author
   end
 end
