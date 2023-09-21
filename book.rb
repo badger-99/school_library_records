@@ -11,12 +11,4 @@ class Book
   def add_rental(rental)
     @rentals.push(rental)
   end
-
-  def retrieve_title
-    @title
-  end
-
-  def retrieve_author
-    @author
-  end
 end
