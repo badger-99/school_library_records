@@ -32,4 +32,8 @@ class App
   def retrieve_teachers
     @teacher_list
   end
+
+  def retrieve_people
+    @student_list + @teacher_list
+  end
 end
