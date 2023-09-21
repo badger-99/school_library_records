@@ -19,5 +19,8 @@ class Rental
   def author
     @book.author
   end
+
+  def id
+    @person.id
   end
 end
