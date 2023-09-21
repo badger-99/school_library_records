@@ -5,18 +5,24 @@ app = App.new
 
 app.create_student(18, 'Ichigo', true)
 app.create_student(16, 'Tanjiro', false)
-list = app.retrieve_students
-puts list[1].name
 
 app.create_teacher(42, 'Obi-Wan', 'Jedi')
 app.create_teacher(66, 'Sheev', 'Sith')
-puts app.retrieve_teachers[0].name
 
 # algorithm to list al the people (students + teachers)
-list = app.retrieve_people
-list.each do |item|
+people = app.retrieve_people
+people.each do |item|
   puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
 end
+
+app.create_book('A book', 'John Doe')
+app.create_book('A sequel', 'Jane Doe')
+
+books = app.retrieve_books
+books.each do |book|
+  puts "Title: #{book.title}, Author: #{book.author}"
+end
+
 
 # require './person'
 # require './student'
