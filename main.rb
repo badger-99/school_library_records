@@ -34,10 +34,10 @@ rentals.each do |rental|
 end
 
 def main
-  app = App.new()
+  App.new
   selection = 0
   while selection != 7
-    case(selection)
+    case selection
     when 0
       puts menu
     when 1
