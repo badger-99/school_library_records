@@ -2,7 +2,7 @@ require './app'
 
 app = App.new
 
-person = app.create_student(18, 'Ichigo', true)
+ichigo = app.create_student(18, 'Ichigo', true)
 app.create_student(16, 'Tanjiro', false)
 
 app.create_teacher(42, 'Obi-Wan', 'Jedi')
@@ -23,13 +23,14 @@ books.each do |volume|
 end
 
 date = '2023/09/21'
-app.create_rental(date, person, book)
+app.create_rental(date, ichigo, book)
 
 puts book.title
+puts ichigo.id
 
 rentals = app.retrieve_rentals
 rentals.each do |rental|
-  puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
+  puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author} ID: #{rental.id}"
 end
 
 # require './person'
