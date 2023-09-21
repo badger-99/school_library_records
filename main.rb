@@ -2,13 +2,21 @@ require './app'
 
 app = App.new
 
+
 app.create_student(18, 'Ichigo', true)
 app.create_student(16, 'Tanjiro', false)
 list = app.retrieve_students
 puts list[1].name
 
+app.create_teacher(42, 'Obi-Wan', 'Jedi')
 app.create_teacher(66, 'Sheev', 'Sith')
 puts app.retrieve_teachers[0].name
+
+# algorithm to list al the people (students + teachers)
+list = app.retrieve_people
+list.each do |item|
+  puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
+end
 
 # require './person'
 # require './student'
