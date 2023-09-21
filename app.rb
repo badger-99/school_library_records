@@ -28,6 +28,13 @@ class App
   def create_book(title, author)
     book = Book.new(title, author)
     @book_list.push(book)
+    book
+  end
+
+  def create_rental(date, person, book)
+    rental = Rental.new(date, person, book)
+    @rental_list.push(rental)
+    rental
   end
 
   def retrieve_people
@@ -36,5 +43,9 @@ class App
 
   def retrieve_books
     @book_list
+  end
+
+  def retrieve_rentals
+    @rental_list
   end
 end
