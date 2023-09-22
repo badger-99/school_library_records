@@ -50,4 +50,38 @@ class App
   def retrieve_rentals
     @rental_list
   end
+
+  def print_books(arr)
+    arr.each do |volume|
+      puts "Title: #{volume.title}, Author: #{volume.author}"
+    end
+  end
+
+  def print_books_with_index(arr)
+    arr.each_with_index do |book, index|
+      puts "#{index + 1} - #{book.title}"
+    end
+  end
+
+  def print_people(arr)
+    arr.each do |item|
+      puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
+    end
+  end
+
+  def print_people_with_index(arr)
+    arr.each_with_index do |person, index|
+      puts "#{index + 1} - #{person.name}  #{person.class}"
+    end
+  end
+
+  def print_rentals(arr)
+    if arr
+      arr.each do |rental|
+        puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
+      end
+    else
+      puts 'The person with the ID number you provided has not made any rentals.'
+    end
+  end
 end
