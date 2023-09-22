@@ -14,19 +14,9 @@ module Main
       puts "\n"
       selection = gets.chomp.to_i
 
-    when 1 # List all books
-      books = app.retrieve_books
-      books.each do |volume|
-        puts "Title: #{volume.title}, Author: #{volume.author}"
-      end
-      selection = 0
-      puts "\n"
-
-    when 2 # List all people
-      people = app.retrieve_people
-      people.each do |item|
-        puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
-      end
+    when 1..2
+      app.print_books_or_people(app.retrieve_books) if selection == 1
+      app.print_books_or_people(app.retrieve_people) if selection == 2
       selection = 0
       puts "\n"
 
@@ -36,25 +26,24 @@ module Main
       age = name = permission = specialization = ''
       allowed = student = teacher = nil
 
-      if choice == 1
-        student = true
-        print 'Age: '
-        age = gets.chomp.to_i
-        print 'Name: '
-        name = gets.chomp
-        print 'Has the parent(s) given permission? [Y/N]: '
-        permission = gets.chomp.downcase
-      elsif choice == 2
-        teacher = true
-        print 'Age: '
-        age = gets.chomp.to_i
-        print 'Name: '
-        name = gets.chomp
-        print 'Specialization: '
-        specialization = gets.chomp
-      else
+      student = true if choice == 1
+      teacher = true if choice == 2
+      unless student || teacher
         puts 'Select a valid Person option.'
         selection = 3
+      end
+
+      print 'Age: '
+      age = gets.chomp.to_i
+      print 'Name: '
+      name = gets.chomp
+
+      if student
+        print 'Has the parent(s) given permission? [Y/N]: '
+        permission = gets.chomp.downcase
+      elsif teacher
+        print 'Specialization: '
+        specialization = gets.chomp
       end
 
       # input validation
@@ -76,7 +65,6 @@ module Main
         puts 'Enter positive numbers only for the age.'
         selection = 3
       end
-
       puts "\n"
 
     when 4 # Create a book
@@ -98,24 +86,18 @@ module Main
       if date.match?(date_pattern)
         # select person
         puts 'Select a book from the following list by number'
-        books_list = app.retrieve_books
-        books_list.each_with_index do |book, index|
-          puts "#{index + 1} - #{book.title}"
-        end
+        # books_list = app.retrieve_books
+        app.print_books_with_index(app.retrieve_books)
         book_selection = gets.chomp.to_i - 1
 
         # select book
         puts 'Select a person from this list by number'
-        people_list = app.retrieve_people
-        people_list.each_with_index do |person, index|
-          puts "#{index + 1} - #{person.name}  #{person.class}"
-        end
+        # people_list = app.retrieve_people
+        app.print_people_with_index(app.retrieve_people)
         person_selection = gets.chomp.to_i - 1
 
         # create the rental record
-        person = people_list[person_selection]
-        book = books_list[book_selection]
-        app.create_rental(date, person, book)
+        app.create_rental(date, people_list[person_selection], books_list[book_selection])
         selection = 0
         puts 'Rental has been recorded successfully'
       else
@@ -127,21 +109,11 @@ module Main
     when 6 # List all rentals by ID
       print 'ID of person: '
       id = gets.chomp.to_i
-      rental_records = []
       rentals = app.retrieve_rentals
-      rentals.each do |rental|
-        rental_records.push(rental) if rental.id == id
-      end
-      if rental_records
-        rental_records.each do |rental|
-          puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
-        end
-      else
-        puts 'The person with the ID number you provided has not made any rentals.'
-      end
-
-      puts "\n"
+      rental_records = rentals.select { |rental| rental.id == id }
+      app.print_rentals(rental_records)
       selection = 0
+      puts "\n"
 
     when 7
       selection = 7
