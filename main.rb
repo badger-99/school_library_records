@@ -100,13 +100,38 @@ module Main
       next
 
     when 5 # Record a rental
-      date = '2023/09/21'
-      app.create_rental(date, ichigo, a_book)
-      app.create_rental(date, tanjiro, a_sequel)
-      app.create_rental(date, kenobi, a_book)
-      app.create_rental(date, sheev, a_sequel)
-      selection = 0
-      puts 'Rental has been recorded successfully'
+      # get date
+      date_pattern = /\A\d{4}\/\d{2}\/\d{2}\z/
+      print 'Date [YYYY/MM/DD]: '
+      date = gets.chomp
+
+      if date.match?(date_pattern)
+        # select person
+        puts 'Select a book from the following list by number'
+        books_list = app.retrieve_books
+        books_list.each_with_index do |book, index|
+          puts "#{index+1} - #{book.title}"
+        end
+        book_selection = gets.chomp.to_i-1
+
+        # select book
+        puts 'Select a person from this list by number'
+        people_list = app.retrieve_people
+        people_list.each_with_index do |person, index|
+          puts "#{index+1} - #{person.name}  #{person.class}"
+        end
+        person_selection = gets.chomp.to_i-1
+
+        # create the rental record
+        person = people_list[person_selection]
+        book = books_list[book_selection]
+        app.create_rental(date, person, book)
+        selection = 0
+        puts 'Rental has been recorded successfully'
+      else
+        puts 'Enter a valid date in the shown format.'
+        selection = 5
+      end
       puts "\n"
       next
 
