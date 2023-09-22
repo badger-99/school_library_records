@@ -34,12 +34,57 @@ module Main
       next
 
     when 3 # Create a person
-      ichigo = app.create_student(18, 'Ichigo', true)
-      tanjiro = app.create_student(16, 'Tanjiro', false)
-      kenobi = app.create_teacher(42, 'Obi-Wan', 'Jedi')
-      sheev = app.create_teacher(66, 'Sheev', 'Sith')
-      selection = 0
-      puts 'Person has been created successfully'
+      print 'Do you want to create a Student(1) or a Teacher(2)? [Input the number]: '
+      choice = gets.chomp.to_i
+
+      if choice == 1
+        print 'Age: '
+        age = gets.chomp.to_i
+        print 'Name: '
+        name = gets.chomp
+        print 'Has the parent(s) given permission? [Y/N]: '
+        permission = gets.chomp.downcase
+        allowed = nil
+
+        if permission == 'y'
+          allowed = true
+        elsif permission == 'n'
+          allowed = false
+        end
+
+        if allowed.nil?
+          puts 'Select a valid choice for parental permission'
+          selection = 3
+        elsif !age.is_a?(Integer) || age < 1
+          puts 'Enter positive numbers only for the age.'
+          selection = 3
+        else
+          app.create_student(age, name, allowed)
+          puts 'Student has been created successfully'
+          selection = 0
+        end
+
+      elsif choice == 2
+        print 'Age: '
+        age = gets.chomp.to_i
+        print 'Name: '
+        name = gets.chomp
+        print 'Specialization: '
+        specialization = gets.chomp
+        if !age.is_a?(Integer) || age < 1
+          puts 'Enter positive numbers only for the age.'
+          selection = 3
+        else
+          app.create_teacher(age, name, specialization)
+          puts 'Teacher has been created successfully'
+          selection = 0
+        end
+
+      else
+        puts 'Select a valid Person option.'
+        selection = 3
+      end
+
       puts "\n"
       next
 
@@ -49,8 +94,6 @@ module Main
       print 'Author: '
       author = gets.chomp
       app.create_book(title, author)
-      # a_book = app.create_book('A book', 'John Doe')
-      # a_sequel = app.create_book('A sequel', 'Jane Doe')
       selection = 0
       puts 'Book has been created successfully'
       puts "\n"
@@ -79,6 +122,8 @@ module Main
     when 7
       selection = 7
       next
+    else
+      # handle wrong selection here
     end
   end
   puts 'Thank you for using the School Library App'
