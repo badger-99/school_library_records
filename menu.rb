@@ -7,10 +7,8 @@ module MainMenu
   5 - Create a rental
   6 - List all rentals for a given person ID
   7 - Exit"
-  def print_menu
-    puts @menu
+
+  def self.display_menu
+    @menu
   end
 end
-
-# include Menu
-# Menu.print_menu
