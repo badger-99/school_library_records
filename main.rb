@@ -1,57 +1,46 @@
 require './app'
+require './menu.rp'
 
-app = App.new
-
-ichigo = app.create_student(18, 'Ichigo', true)
-app.create_student(16, 'Tanjiro', false)
-
-app.create_teacher(42, 'Obi-Wan', 'Jedi')
-app.create_teacher(66, 'Sheev', 'Sith')
-
-# algorithm to list al the people (students + teachers)
-people = app.retrieve_people
-people.each do |item|
-  puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
-end
-
-book = app.create_book('A book', 'John Doe')
-app.create_book('A sequel', 'Jane Doe')
-
-books = app.retrieve_books
-books.each do |volume|
-  puts "Title: #{volume.title}, Author: #{volume.author}"
-end
-
-date = '2023/09/21'
-app.create_rental(date, ichigo, book)
-
-puts book.title
-puts ichigo.id
-
-rentals = app.retrieve_rentals
-rentals.each do |rental|
-  puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author} ID: #{rental.id}"
-end
-
-def main
-  App.new
+module Main
+  include MainMenu
+  app = App.new
   selection = 0
+
+  puts 'Welcome to the School Library App'
+
   while selection != 7
     case selection
     when 0
-      puts menu
+      MainMenu.print_menu
     when 1
-      # List all books
+      books = app.retrieve_books
+      books.each do |volume|
+        puts "Title: #{volume.title}, Author: #{volume.author}"
+      end
     when 2
-      # list all the people
+      people = app.retrieve_people
+      people.each do |item|
+        puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
+      end
     when 3
-      # create a person
+      ichigo = app.create_student(18, 'Ichigo', true)
+      tanjiro = app.create_student(16, 'Tanjiro', false)
+      kenobi = app.create_teacher(42, 'Obi-Wan', 'Jedi')
+      sheev = app.create_teacher(66, 'Sheev', 'Sith')
     when 4
-      # create a book
+      a_book = app.create_book('A book', 'John Doe')
+      a_sequel = app.create_book('A sequel', 'Jane Doe')
     when 5
-      # create a rental
+      date = '2023/09/21'
+      app.create_rental(date, ichigo, a_book)
+      app.create_rental(date, tanjiro, a_sequel)
+      app.create_rental(date, kenobi, a_book)
+      app.create_rental(date, sheev, a_sequel)
     when 6
-      # list all rentals for a given ID
+      rentals = app.retrieve_rentals
+      rentals.each do |rental|
+        puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author} ID: #{rental.id}"
+      end
     when 7
       # exit loop
     end
