@@ -136,10 +136,24 @@ module Main
       next
 
     when 6 # List all rentals by ID
+      print 'ID of person: '
+      id = gets.chomp.to_i
+      rental_records = []
       rentals = app.retrieve_rentals
+
       rentals.each do |rental|
-        puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author} ID: #{rental.id}"
+        if rental.id == id
+          rental_records.push(rental)
       end
+
+      if rental_records
+        rental_records.each do |rental|
+          puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
+        end
+      else
+        puts 'The person with the ID number you provided has not made any rentals.'
+      end
+      
       puts "\n"
       selection = 0
       next
