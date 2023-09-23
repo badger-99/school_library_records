@@ -85,15 +85,15 @@ module Main
 
       if date.match?(date_pattern)
         # select person
-        puts 'Select a book from the following list by number'
-        # books_list = app.retrieve_books
-        app.print_books_with_index(app.retrieve_books)
+        puts "\nSelect a book from the following list by number\n\n"
+        books_list = app.retrieve_books
+        app.print_books_with_index(books_list)
         book_selection = gets.chomp.to_i - 1
 
         # select book
-        puts 'Select a person from this list by number'
-        # people_list = app.retrieve_people
-        app.print_people_with_index(app.retrieve_people)
+        puts "\nSelect a person from this list by number (Not the ID)\n\n"
+        people_list = app.retrieve_people
+        app.print_people_with_index(people_list)
         person_selection = gets.chomp.to_i - 1
 
         # create the rental record
