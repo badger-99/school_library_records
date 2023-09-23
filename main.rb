@@ -15,8 +15,8 @@ module Main
       selection = gets.chomp.to_i
 
     when 1..2
-      app.print_books_or_people(app.retrieve_books) if selection == 1
-      app.print_books_or_people(app.retrieve_people) if selection == 2
+      app.print_books(app.retrieve_books) if selection == 1
+      app.print_people(app.retrieve_people) if selection == 2
       selection = 0
       puts "\n"
 
