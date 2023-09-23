@@ -52,8 +52,12 @@ class App
   end
 
   def print_books(arr)
-    arr.each do |volume|
-      puts "Title: #{volume.title}, Author: #{volume.author}"
+    if arr.length>0
+      arr.each do |volume|
+        puts "Title: #{volume.title}, Author: #{volume.author}"
+      end
+    else
+      puts "\nThere are no registered books."
     end
   end
 
@@ -64,8 +68,12 @@ class App
   end
 
   def print_people(arr)
-    arr.each do |item|
-      puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
+    if arr.length>0
+      arr.each do |item|
+        puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
+      end
+    else
+      puts "\nThere are no registered people.\n"
     end
   end
 
@@ -76,12 +84,12 @@ class App
   end
 
   def print_rentals(arr)
-    if arr
+    if arr.length>0
       arr.each do |rental|
         puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
       end
     else
-      puts 'The person with the ID number you provided has not made any rentals.'
+      puts "\nThere are no rentals under the ID number you provided.\n\n"
     end
   end
 end
