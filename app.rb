@@ -29,7 +29,8 @@ class App
 
   def create_book(title, author)
     book = Book.new(title, author)
-    @book_list.push(book)
+    book_list = []
+    book_list.push(book)
     book
   end
 
