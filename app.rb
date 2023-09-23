@@ -54,7 +54,7 @@ class App
   end
 
   def print_books(arr)
-    if arr.length>0
+    if arr.length.positive?
       arr.each do |volume|
         puts "Title: #{volume.title}, Author: #{volume.author}"
       end
@@ -74,7 +74,7 @@ class App
   end
 
   def print_people(arr)
-    if arr.length>0
+    if arr.length.positive?
       arr.each do |item|
         puts "[#{item.class}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
       end
@@ -94,7 +94,7 @@ class App
   end
 
   def print_rentals(arr)
-    if arr.length>0
+    if arr.length.positive?
       arr.each do |rental|
         puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
       end
