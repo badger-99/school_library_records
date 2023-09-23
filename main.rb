@@ -52,14 +52,14 @@ module Main
 
       if student && !allowed.nil? && age.positive?
         app.create_student(age, name, allowed)
-        puts "\nStudent has been created successfully"
+        puts "\nStudent has been registered successfully."
         selection = 0
       elsif student && allowed.nil?
-        puts "\nSelect a valid choice for parental permission"
+        puts "\nSelect a valid choice for parental permission."
         selection = 3
       elsif teacher && age.positive?
         app.create_teacher(age, name, specialization)
-        puts "\nTeacher has been created successfully"
+        puts "\nTeacher has been registered successfully."
         selection = 0
       elsif (student || teacher) && age < 1
         puts "\nEnter positive numbers only for the age."
@@ -74,7 +74,7 @@ module Main
       author = gets.chomp
       app.create_book(title, author)
       selection = 0
-      puts "\nBook has been created successfully.\n\n"
+      puts "\nBook has been registered successfully.\n\n"
 
     when 5 # Record a rental
       # get date
@@ -84,13 +84,13 @@ module Main
 
       if date.match?(date_pattern)
         # select person
-        puts "\nSelect a book from the following list by number\n\n"
+        puts "\nSelect a book from the following list by number, or press ENTER if the list is empty.\n\n"
         books_list = app.retrieve_books
         app.print_books_with_index(books_list)
         book_selection = gets.chomp.to_i - 1
 
         # select book
-        puts "\nSelect a person from this list by number (Not the ID)\n\n"
+        puts "\nSelect a person from this list by number (Not the ID), or press ENTER if the list is empty.\n\n"
         people_list = app.retrieve_people
         app.print_people_with_index(people_list)
         person_selection = gets.chomp.to_i - 1
@@ -98,7 +98,7 @@ module Main
         # create the rental record
         app.create_rental(date, people_list[person_selection], books_list[book_selection])
         selection = 0
-        puts "\nRental has been recorded successfully"
+        puts "\nRental has been recorded."
       else
         puts "\nEnter a valid date in the shown format."
         selection = 5
