@@ -10,8 +10,7 @@ module Main
   while selection != 7
     case selection
     when 0
-      puts MainMenu.display_menu
-      puts "\n"
+      puts "#{MainMenu.display_menu}\n"
       selection = gets.chomp.to_i
 
     when 1..2
@@ -29,8 +28,9 @@ module Main
       student = true if choice == 1
       teacher = true if choice == 2
       unless student || teacher
-        puts 'Select a valid Person option.'
+        puts "\nSelect a valid Person option.\n\n"
         selection = 3
+        next
       end
 
       print 'Age: '
@@ -52,17 +52,17 @@ module Main
 
       if student && !allowed.nil? && age.positive?
         app.create_student(age, name, allowed)
-        puts 'Student has been created successfully'
+        puts "\nStudent has been created successfully"
         selection = 0
       elsif student && allowed.nil?
-        puts 'Select a valid choice for parental permission'
+        puts "\nSelect a valid choice for parental permission"
         selection = 3
       elsif teacher && age.positive?
         app.create_teacher(age, name, specialization)
-        puts 'Teacher has been created successfully'
+        puts "\nTeacher has been created successfully"
         selection = 0
       elsif (student || teacher) && age < 1
-        puts 'Enter positive numbers only for the age.'
+        puts "\nEnter positive numbers only for the age."
         selection = 3
       end
       puts "\n"
@@ -74,8 +74,7 @@ module Main
       author = gets.chomp
       app.create_book(title, author)
       selection = 0
-      puts 'Book has been created successfully'
-      puts "\n"
+      puts "\nBook has been created successfully.\n\n"
 
     when 5 # Record a rental
       # get date
@@ -99,9 +98,9 @@ module Main
         # create the rental record
         app.create_rental(date, people_list[person_selection], books_list[book_selection])
         selection = 0
-        puts 'Rental has been recorded successfully'
+        puts "\nRental has been recorded successfully"
       else
-        puts 'Enter a valid date in the shown format.'
+        puts "\nEnter a valid date in the shown format."
         selection = 5
       end
       puts "\n"
