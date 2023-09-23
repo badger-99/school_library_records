@@ -62,8 +62,12 @@ class App
   end
 
   def print_books_with_index(arr)
-    arr.each_with_index do |book, index|
-      puts "#{index + 1} - #{book.title}"
+    if arr.length.positive?
+      arr.each_with_index do |book, index|
+        puts "#{index + 1} - #{book.title}"
+      end
+    else
+      puts "\nThere are no registered books."
     end
   end
 
@@ -78,8 +82,12 @@ class App
   end
 
   def print_people_with_index(arr)
-    arr.each_with_index do |person, index|
-      puts "#{index + 1} - #{person.name}  #{person.class}"
+    if arr.length.positive?
+      arr.each_with_index do |person, index|
+        puts "#{index + 1} - #{person.name}  #{person.class}"
+      end
+    else
+      puts "\nThere are no registered people.\n"
     end
   end
 
