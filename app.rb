@@ -34,6 +34,8 @@ class App
   end
 
   def create_rental(date, person, book)
+    return unless person.is_a?(Person) && book.instance_of?(Book)
+
     rental = Rental.new(date, person, book)
     @rental_list.push(rental)
     rental
