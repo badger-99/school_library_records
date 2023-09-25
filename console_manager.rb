@@ -95,7 +95,12 @@ class ConsoleManager
 
   # Option 4 - Register a book
   def add_book
-    
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    books_manager.create_book(title, author)
+    puts "\nBook has been registered successfully.\n\n"
   end
 
   # Option 5 - Record a rental
