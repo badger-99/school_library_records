@@ -1,6 +1,17 @@
 require './app'
 require './menu'
 
+
+def print_rentals(arr)
+  if arr.length.positive?
+    arr.each do |rental|
+      puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
+    end
+  else
+    puts "\nThere are no rentals under the ID number you provided.\n\n"
+  end
+end
+
 module Main
   include MainMenu
   app = App.new
@@ -122,4 +133,48 @@ module Main
     next
   end
   puts 'Thank you for using the School Library App'
+end
+
+
+class ConsoleManager
+
+  def initialize
+    @app = App.new()
+  end
+
+  def list_books(include_indexes: false)
+    if app.books_list.length.positive?
+      app.books_list.each_with_index do |book, index|
+        puts "#{include_indexes && "#{index + 1})" } Title: #{book.title}, Author: #{book.author}"
+      end
+    else
+      puts "\nThere are no registered books."
+    end
+  end
+
+  def list_persons(include_indexes: false)
+    if app.persons_list.length.positive?
+      app.persons_list.each_with_index do |person|
+        puts "#{include_indexes && "#{index + 1})" } [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    end
+    else
+      puts "\nThere are no registered people.\n"
+    end
+  end
+
+  def add_person
+
+  end
+
+  def add_book
+
+  end
+
+  def add_rental
+
+  end
+
+  def list_rental_for_id
+
+  end
 end
