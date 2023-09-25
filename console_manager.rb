@@ -62,23 +62,23 @@ class ConsoleManager
   end
 
   def add_student
-    # Prompt 
+    # Prompt
     print 'Age: '
     age = gets.chomp.to_i
     print 'Name: '
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.upcase
-    
+
     # Action
     persons_manager.create_student(age, name, permission == 'Y')
-    
+
     # Feedback
     puts 'Student created!'
   end
 
   def add_teacher
-    # Prompt 
+    # Prompt
     print 'Age: '
     age = gets.chomp.to_i
     print 'Name: '
@@ -88,7 +88,7 @@ class ConsoleManager
 
     # Action
     persons_manager.create_teacher(age, name, specialization)
-    
+
     # Feedback
     puts 'Teacher created!'
   end
@@ -105,7 +105,32 @@ class ConsoleManager
 
   # Option 5 - Record a rental
   def add_rental
+    # get date
+      date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
+      print 'Date [YYYY/MM/DD]: '
+      date = gets.chomp
 
+      if date.match?(date_pattern)
+        # select person
+        puts "\nSelect a book from the following list by number, or press ENTER if the list is empty.\n\n"
+        list_books(include_indexes: true)
+        book_selection = gets.chomp.to_i - 1
+
+        # select book
+        puts "\nSelect a person from this list by number (Not the ID), or press ENTER if the list is empty.\n\n"
+        list_persons(include_indexes: true)
+        person_selection = gets.chomp.to_i - 1
+
+        # create the rental record
+        # I used variables for readability because the names are too long
+        person = persons_manager.persons_list[person_selection]
+        book = books_manager.books_list[book_selection]
+        app.create_rental(date, person, book)
+        puts "\nRental has been recorded."
+      else
+        puts "\nEnter a valid date in the shown format."
+      end
+      puts "\n"
   end
 
   # Option 6 - List all rentals for a given person ID
@@ -123,6 +148,5 @@ class ConsoleManager
       puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
     end
   end
-  
-end
 
+end
