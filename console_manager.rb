@@ -74,7 +74,7 @@ class ConsoleManager
     persons_manager.create_student(age, name, permission == 'Y')
 
     # Feedback
-    puts 'Student created!'
+    puts 'Student has been registered successfully.\n\n'
   end
 
   def add_teacher
@@ -90,56 +90,71 @@ class ConsoleManager
     persons_manager.create_teacher(age, name, specialization)
 
     # Feedback
-    puts 'Teacher created!'
+    puts 'Teacher has been registered successfully.\n\n'
   end
 
   # Option 4 - Register a book
   def add_book
+    # Prompt
     print 'Title: '
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
+    
+    # Action
     books_manager.create_book(title, author)
+    
+    # Feedback
     puts "\nBook has been registered successfully.\n\n"
   end
 
   # Option 5 - Record a rental
   def add_rental
     # get date
-      date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
-      print 'Date [YYYY/MM/DD]: '
+    date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
+    print 'Date [YYYY/MM/DD]: '
+    date = gets.chomp
+
+     # Input validation
+    until date.match?(date_pattern)
+      puts "\nEnter a valid date in the shown format."
       date = gets.chomp
+    end
 
-      if date.match?(date_pattern)
-        # select person
-        puts "\nSelect a book from the following list by number, or press ENTER if the list is empty.\n\n"
-        list_books(include_indexes: true)
-        book_selection = gets.chomp.to_i - 1
+    # Prompt
+    puts "\nSelect a book from the following list by number, or press ENTER if the list is empty.\n\n"
+    list_books(include_indexes: true)
+    book_selection = gets.chomp.to_i - 1
 
-        # select book
-        puts "\nSelect a person from this list by number (Not the ID), or press ENTER if the list is empty.\n\n"
-        list_persons(include_indexes: true)
-        person_selection = gets.chomp.to_i - 1
+    # Prompt 2
+    puts "\nSelect a person from this list by number (Not the ID), or press ENTER if the list is empty.\n\n"
+    list_persons(include_indexes: true)
+    person_selection = gets.chomp.to_i - 1
 
-        # create the rental record
-        # I used variables for readability because the names are too long
-        person = persons_manager.persons_list[person_selection]
-        book = books_manager.books_list[book_selection]
-        app.create_rental(date, person, book)
-        puts "\nRental has been recorded."
-      else
-        puts "\nEnter a valid date in the shown format."
-      end
-      puts "\n"
+    # Action
+    person = persons_manager.persons_list[person_selection]
+    book = books_manager.books_list[book_selection]
+    app.create_rental(date, person, book)
+
+    # Feedback
+    puts "\nRental has been recorded."
+  
   end
 
   # Option 6 - List all rentals for a given person ID
-  def list_rental_for_id(id)
-    rentals = rentals_manager.rentals_list.select { |rental| rental.person_id == id }
+  def list_rental_for_id
+    # Prompt
+    print 'ID of person: '
+    person_id = gets.chomp.to_i
+
+    # Action
+    rentals = rentals_manager.rentals_list.select { |rental| rental.person_id == person_id }
+    
+    # Feedback
     if !rentals.length.positive?
       puts "\nThere are no rentals under the ID number you provided.\n\n"
     else
-      list_rentals(rentals)
+      print_rentals(rentals)
     end
   end
 
