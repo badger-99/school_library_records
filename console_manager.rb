@@ -72,7 +72,7 @@ class ConsoleManager
     parent_permission = gets.chomp.upcase
 
     # Action
-    persons_manager.create_student(age, name, parent_permission == 'Y')
+    @persons_manager.create_student(age, name, parent_permission == 'Y')
 
     # Feedback
     puts 'Student has been registered successfully.\n\n'
@@ -88,7 +88,7 @@ class ConsoleManager
     specialization = gets.chomp
 
     # Action
-    persons_manager.create_teacher(age, name, specialization)
+    @persons_manager.create_teacher(age, name, specialization)
 
     # Feedback
     puts 'Teacher has been registered successfully.\n\n'
