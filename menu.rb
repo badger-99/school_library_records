@@ -1,5 +1,5 @@
 module MainMenu
-  @menu = "  Please choose an option by entering a number.
+  @menu = "\nPlease choose an option by entering a number.
   1 - List all books
   2 - List all people
   3 - Register a person
