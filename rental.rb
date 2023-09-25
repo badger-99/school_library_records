@@ -20,7 +20,7 @@ class Rental
     @book.author
   end
 
-  def id
+  def person_id
     @person.id
   end
 end
