@@ -135,7 +135,7 @@ class ConsoleManager
     # Action
     person = @persons_manager.persons_list[person_selection]
     book = @books_manager.books_list[book_selection]
-    app.create_rental(date, person, book)
+    @rentals_manager.create_rental(date, person, book)
 
     # Feedback
     puts "\nRental has been recorded."
