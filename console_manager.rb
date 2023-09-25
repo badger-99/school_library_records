@@ -2,42 +2,43 @@ require './app'
 
 class ConsoleManager
   def initialize
-    @persons_manager = PersonsManager.new()
-    @books_manager = BooksManager.new()
-    @rentals_manager = RentalsManager.new()
+    @persons_manager = PersonsManager.new
+    @books_manager = BooksManager.new
+    @rentals_manager = RentalsManager.new
   end
 
   # Option 1 - List all books
   def list_books(include_indexes: false)
     books = @books_manager.books_list
-    if !books.length.positive?
-      puts "\nThere are no registered books."
-    else
+    if books.length.positive?
       print_books(books, include_indexes)
+    else
+      puts "\nThere are no registered books."
     end
   end
 
   def print_books(include_indexes)
     books = @books_manager.books_list
     books.each_with_index do |book, index|
-      puts "#{include_indexes && "#{index + 1})" } Title: #{book.title}, Author: #{book.author}"
+      puts "#{include_indexes && "#{index + 1})"} Title: #{book.title}, Author: #{book.author}"
     end
   end
 
   # Option 2 - List all persons
   def list_persons(include_indexes: false)
     persons = @persons_manager.persons_list
-    if !persons.length.positive?
-      puts "\nThere are no registered people.\n"
-    else
+    if persons.length.positive?
       print_persons(include_indexes)
+    else
+      puts "\nThere are no registered people.\n"
     end
   end
 
   def print_persons(include_indexes)
     persons = @persons_manager.persons_list
-    persons.each_with_index do |person|
-        puts "#{include_indexes && "#{index + 1})" } [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    persons.each_with_index do |person, index|
+      puts "#{include_indexes && "#{index + 1})"}" \
+           "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
   end
 
@@ -48,7 +49,7 @@ class ConsoleManager
     choice = gets.chomp
 
     # Input validation
-    until choice == '1' || choice == '2'
+    until %w[1 2].include?(choice)
       puts 'Please enter either 1 or 2:'
       choice = gets.chomp
     end
@@ -71,7 +72,7 @@ class ConsoleManager
     parent_permission = gets.chomp.upcase
 
     # Action
-    persons_manager.create_student(age, name, permission == 'Y')
+    persons_manager.create_student(age, name, parent_permission == 'Y')
 
     # Feedback
     puts 'Student has been registered successfully.\n\n'
@@ -100,10 +101,10 @@ class ConsoleManager
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
-    
+
     # Action
     books_manager.create_book(title, author)
-    
+
     # Feedback
     puts "\nBook has been registered successfully.\n\n"
   end
@@ -115,7 +116,7 @@ class ConsoleManager
     print 'Date [YYYY/MM/DD]: '
     date = gets.chomp
 
-     # Input validation
+    # Input validation
     until date.match?(date_pattern)
       puts "\nEnter a valid date in the shown format."
       date = gets.chomp
@@ -138,7 +139,6 @@ class ConsoleManager
 
     # Feedback
     puts "\nRental has been recorded."
-  
   end
 
   # Option 6 - List all rentals for a given person ID
@@ -149,12 +149,12 @@ class ConsoleManager
 
     # Action
     rentals = rentals_manager.rentals_list.select { |rental| rental.person_id == person_id }
-    
+
     # Feedback
-    if !rentals.length.positive?
-      puts "\nThere are no rentals under the ID number you provided.\n\n"
-    else
+    if rentals.length.positive?
       print_rentals(rentals)
+    else
+      puts "\nThere are no rentals under the ID number you provided.\n\n"
     end
   end
 
@@ -163,5 +163,4 @@ class ConsoleManager
       puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
     end
   end
-
 end
