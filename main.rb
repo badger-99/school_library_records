@@ -167,7 +167,11 @@ class ConsoleManager
   end
 
   def add_book
-
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    books_manager.create_book(title, author)
   end
 
   def add_rental
