@@ -133,8 +133,8 @@ class ConsoleManager
     person_selection = gets.chomp.to_i - 1
 
     # Action
-    person = persons_manager.persons_list[person_selection]
-    book = books_manager.books_list[book_selection]
+    person = @persons_manager.persons_list[person_selection]
+    book = @books_manager.books_list[book_selection]
     app.create_rental(date, person, book)
 
     # Feedback
@@ -148,7 +148,7 @@ class ConsoleManager
     person_id = gets.chomp.to_i
 
     # Action
-    rentals = rentals_manager.rentals_list.select { |rental| rental.person_id == person_id }
+    rentals = @rentals_manager.rentals_list.select { |rental| rental.person_id == person_id }
 
     # Feedback
     if rentals.length.positive?
