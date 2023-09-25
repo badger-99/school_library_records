@@ -11,7 +11,7 @@ class ConsoleManager
   def list_books(include_indexes: false)
     books = @books_manager.books_list
     if books.length.positive?
-      print_books(books, include_indexes)
+      print_books(include_indexes)
     else
       puts "\nThere are no registered books."
     end
@@ -20,7 +20,7 @@ class ConsoleManager
   def print_books(include_indexes)
     books = @books_manager.books_list
     books.each_with_index do |book, index|
-      puts "#{include_indexes && "#{index + 1})"} Title: #{book.title}, Author: #{book.author}"
+      puts "#{include_indexes ? "#{index + 1}) " : ''}Title: #{book.title}, Author: #{book.author}"
     end
   end
 
@@ -37,7 +37,7 @@ class ConsoleManager
   def print_persons(include_indexes)
     persons = @persons_manager.persons_list
     persons.each_with_index do |person, index|
-      puts "#{include_indexes && "#{index + 1})"}" \
+      puts "#{include_indexes ? "#{index + 1}) " : ''}" \
            "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
   end
@@ -103,7 +103,7 @@ class ConsoleManager
     author = gets.chomp
 
     # Action
-    books_manager.create_book(title, author)
+    @books_manager.create_book(title, author)
 
     # Feedback
     puts "\nBook has been registered successfully.\n\n"

@@ -1,13 +1,13 @@
-require './Console.manager'
+require './console_manager'
 require './menu'
 
 module Main
-  ConsoleManager.new
+  console_manager = ConsoleManager.new
   include MainMenu
-  puts 'Welcome to the School Library App!\n'
+  puts 'Welcome to the School Library App!'
   loop do
     puts "#{MainMenu.display_menu}\n"
-    choice = get.chomp
+    choice = gets.chomp
 
     until %w[1 2 3 4 5 6 7].include?(choice)
       puts 'Please enter a valid choice:'
@@ -15,19 +15,19 @@ module Main
     end
 
     case choice
-    when 1
+    when '1'
       console_manager.list_books
-    when 2
+    when '2'
       console_manager.list_persons
-    when 3
+    when '3'
       console_manager.add_person
-    when 4
+    when '4'
       console_manager.add_book
-    when 5
+    when '5'
       console_manager.add_rental
-    when 6
+    when '6'
       console_manager.list_rental_for_id
-    when 7
+    when '7'
       puts 'Thank you for using this app!'
       break
     end
