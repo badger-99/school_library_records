@@ -175,6 +175,31 @@ class ConsoleManager
   end
 
   def add_rental
+    # get date
+      date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
+      print 'Date [YYYY/MM/DD]: '
+      date = gets.chomp
+
+      if date.match?(date_pattern)
+        # select person
+        puts "\nSelect a book from the following list by number, or press ENTER if the list is empty.\n\n"
+        list_books(include_indexes: true)
+        book_selection = gets.chomp.to_i - 1
+
+        # select book
+        puts "\nSelect a person from this list by number (Not the ID), or press ENTER if the list is empty.\n\n"
+        list_persons(include_indexes: true)
+        person_selection = gets.chomp.to_i - 1
+
+        # create the rental record
+        person = persons_manager.persons_list[person_selection]
+        book = books_manager.books_list[book_selection]
+        app.create_rental(date, person, book)
+        puts "\nRental has been recorded."
+      else
+        puts "\nEnter a valid date in the shown format."
+      end
+      puts "\n"
 
   end
 
