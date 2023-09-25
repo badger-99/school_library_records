@@ -12,4 +12,3 @@ module MainMenu
     @menu
   end
 end
-
