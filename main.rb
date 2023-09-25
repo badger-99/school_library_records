@@ -139,7 +139,8 @@ end
 class ConsoleManager
 
   def initialize
-    @app = App.new()
+    @books_manager = BooksManager.new()
+    @persons_manager = PersonsManager.new()
   end
 
   def list_books(include_indexes: false)
