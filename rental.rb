@@ -1,8 +1,9 @@
 class Rental
   attr_accessor :date
-  attr_reader :person, :book
+  attr_reader :person, :book, :id
 
   def initialize(date, person, book)
+    @id = Random.rand(1..1000)
     @date = date
 
     @person = person
