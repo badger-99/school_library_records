@@ -58,4 +58,10 @@ class RentalsManager
     @rentals_list.push(rental)
     rental
   end
+
+  def save_rental_to_file
+    File.open('rental.json', 'w') do |file|
+      file.puts self.to_json
+    end
+  end
 end
