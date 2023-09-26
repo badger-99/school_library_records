@@ -3,7 +3,7 @@ class Book
   attr_reader :id, :rentals
 
   def initialize(title, author)
-    @id = Random.rand(1..10000)
+    @id = Random.rand(1..10_000)
     @title = title
     @author = author
     @rentals = []
@@ -14,7 +14,7 @@ class Book
   end
 
   def rental_ids
-    @rentals.map {|rental| rental.id}
+    @rentals.map(&:id)
   end
 
   def to_hash

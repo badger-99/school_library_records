@@ -24,11 +24,11 @@ class Student < Person
       'age' => @age,
       'classroom' => @classroom.label,
       'parent_permission' => @parent_permission,
-      'rental_ids' => rental_IDs
+      'rental_ids' => rental_ids
     }
   end
 
-  def to_json
+  def student_to_json
     JSON.generate(to_hash)
   end
 end

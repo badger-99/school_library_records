@@ -30,12 +30,12 @@ class PersonsManager
   end
 
   def save_to_file
-    students_data = students_list.map { |student| student.to_json }
+    students_data = students_list.map(&:student_to_json)
     File.open('students.json', 'w') do |file|
       file.puts JSON.generate(students_data)
     end
 
-    teachers_data = teachers_list.map { |teacher| teacher.to_json }
+    teachers_data = teachers_list.map(&:teacher_to_json)
     File.open('teachers.json', 'w') do |file|
       file.puts JSON.generate(teachers_data)
     end
@@ -56,7 +56,7 @@ class BooksManager
   end
 
   def save_to_file
-    books_data = books_list.map { |book| book.to_json }
+    books_data = books_list.map(&:book_to_json)
     File.open('books.json', 'w') do |file|
       file.puts JSON.generate(books_data)
     end
@@ -79,7 +79,7 @@ class RentalsManager
   end
 
   def save_to_file
-    rentals_data = rentals_list.map { |rental| rental.to_json }
+    rentals_data = rentals_list.map(&:to_json)
     File.open('rentals.json', 'w') do |file|
       file.puts JSON.generate(rentals_data)
     end

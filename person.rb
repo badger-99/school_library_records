@@ -6,7 +6,7 @@ class Person < Nameable
 
   def initialize(age, name = 'Unknown', parent_permission: true)
     super()
-    @id = Random.rand(1..10000)
+    @id = Random.rand(1..10_000)
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -25,8 +25,8 @@ class Person < Nameable
     @rentals.push(rental)
   end
 
-  def rental_IDs
-    @rentals.map {|rental| rental.id}
+  def rental_ids
+    @rentals.map(&:id)
   end
 
   private

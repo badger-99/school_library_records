@@ -18,11 +18,11 @@ class Teacher < Person
       'name' => @name,
       'age' => @age,
       'specialization' => @specialization,
-      'rental_ids' => rental_IDs
+      'rental_ids' => rental_ids
     }
   end
 
-  def to_json
+  def teacher_to_json
     JSON.generate(to_hash)
   end
 end
