@@ -11,6 +11,7 @@ class Person < Nameable
     @age = age
     @parent_permission = parent_permission
     @rentals = []
+    @rentals_IDs = []
   end
 
   def can_use_services?
@@ -23,6 +24,11 @@ class Person < Nameable
 
   def add_rental(rental)
     @rentals.push(rental)
+  end
+
+  def get_rental_IDs
+    @rentals.each do |rental|
+      @rentals_IDs.push(rental.id)
   end
 
   private
