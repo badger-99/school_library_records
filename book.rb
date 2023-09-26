@@ -1,30 +1,31 @@
 class Book
   attr_accessor :title, :author
-  attr_reader :rentals
+  attr_reader :id, :rentals
 
   def initialize(title, author)
     @id = Random.rand(1..10000)
     @title = title
     @author = author
     @rentals = []
-    @rentals_ids = []
   end
 
   def add_rental(rental)
     @rentals.push(rental)
   end
 
-  def find_rental_id
-    @rentals.each do |rental|
-      @rentals_IDs.push(rental.id)
-    end
+  def rental_IDs
+    @rentals.map {|rental| rental.id}
   end
 
   def to_hash
     {
       'title' => @title,
       'author' => @author,
-      'rentals' => @rental_IDs
+      'rentals' => rental_IDs
     }
+  end
+
+  def to_json
+    JSON.generate(to_hash)
   end
 end

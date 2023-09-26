@@ -1,3 +1,4 @@
+require 'json'
 require './person'
 
 class Student < Person
@@ -21,9 +22,13 @@ class Student < Person
     {
       'name' => @name,
       'age' => @age,
-      'classroom' => @classroom,
+      'classroom' => @classroom.label,
       'parent_permission' => @parent_permission,
-      'rentals' => @rental_IDs
+      'rentals' => rental_IDs
     }
+  end
+
+  def to_json
+    JSON.generate(to_hash)
   end
 end

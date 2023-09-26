@@ -27,16 +27,16 @@ class Rental
     @person.id
   end
 
-  def rental_to_hash
+  def to_hash
     {
       'id' => @id,
       'date' => @date,
-      'person' => @person.to_hash,
-      'book' => @book.to_hash
+      'person' => @person.id,
+      'book' => @book.id
     }
   end
 
-  def to_json(rental_to_hash)
-    JSON.generate(rental_to_hash)
+  def to_json
+    JSON.generate(to_hash)
   end
 end
