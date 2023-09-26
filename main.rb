@@ -28,7 +28,7 @@ module Main
     when '6'
       console_manager.list_rental_for_id
     when '7'
-      puts 'Thank you for using this app!'
+      console_manager.exit
       break
     end
   end

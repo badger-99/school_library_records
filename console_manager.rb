@@ -163,4 +163,14 @@ class ConsoleManager
       puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
     end
   end
+
+  # Option 7 - Save data to file and exit
+  def exit
+    puts 'Saving data to file...'
+    @persons_manager.save_to_file()
+    @books_manager.save_to_file()
+    @rentals_manager.save_to_file()
+    puts 'Data has been saved!'
+    puts 'Thank you for using this app!'
+  end
 end
