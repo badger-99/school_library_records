@@ -1,3 +1,5 @@
+require 'json'
+
 class Rental
   attr_accessor :date
   attr_reader :person, :book, :id
@@ -23,5 +25,18 @@ class Rental
 
   def person_id
     @person.id
+  end
+
+  def to_hash
+    {
+      'id' => @id,
+      'date' => @date,
+      'person' => @person.to_hash,
+      'book' => @book.to_hash
+    }
+  end
+
+  def to_json
+    JSON.generate(to_hash)
   end
 end
