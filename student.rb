@@ -16,4 +16,14 @@ class Student < Person
   def play_hockey
     '¯\(ツ)/¯'
   end
+
+  def to_hash
+    {
+      'name' => @name,
+      'age' => @age,
+      'classroom' => @classroom,
+      'parent_permission' => @parent_permission,
+      'rentals' => @rental_IDs
+    }
+  end
 end

@@ -18,4 +18,11 @@ class Book
       @rentals_IDs.push(rental.id)
   end
 
+  def to_hash
+    {
+      'title' => @title,
+      'author' => @author,
+      'rentals' => @rental_IDs
+    }
+  end
 end
