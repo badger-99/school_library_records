@@ -21,7 +21,7 @@ class Book
     {
       'title' => @title,
       'author' => @author,
-      'rentals' => rental_IDs
+      'rental_ids' => rental_IDs
     }
   end
 

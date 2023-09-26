@@ -18,7 +18,7 @@ class Teacher < Person
       'name' => @name,
       'age' => @age,
       'specialization' => @specialization,
-      'rentals' => rental_IDs
+      'rental_ids' => rental_IDs
     }
   end
 

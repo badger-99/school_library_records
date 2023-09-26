@@ -31,8 +31,8 @@ class Rental
     {
       'id' => @id,
       'date' => @date,
-      'person' => @person.id,
-      'book' => @book.id
+      'person_id' => @person.id,
+      'book_id' => @book.id
     }
   end
 
