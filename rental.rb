@@ -27,7 +27,7 @@ class Rental
     @person.id
   end
 
-  def to_hash
+  def rental_to_hash
     {
       'id' => @id,
       'date' => @date,
@@ -36,7 +36,7 @@ class Rental
     }
   end
 
-  def to_json
-    JSON.generate(to_hash)
+  def to_json(rental_to_hash)
+    JSON.generate(rental_to_hash)
   end
 end

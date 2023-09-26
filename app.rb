@@ -61,7 +61,7 @@ class RentalsManager
 
   def save_rental_to_file
     File.open('rental.json', 'w') do |file|
-      file.puts self.to_json
+      file.puts to_json
     end
   end
 end
