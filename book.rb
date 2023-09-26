@@ -13,7 +13,7 @@ class Book
     @rentals.push(rental)
   end
 
-  def rental_IDs
+  def rental_ids
     @rentals.map {|rental| rental.id}
   end
 
@@ -21,11 +21,11 @@ class Book
     {
       'title' => @title,
       'author' => @author,
-      'rental_ids' => rental_IDs
+      'rental_ids' => rental_ids
     }
   end
 
-  def to_json
+  def book_to_json
     JSON.generate(to_hash)
   end
 end

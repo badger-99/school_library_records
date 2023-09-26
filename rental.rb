@@ -36,7 +36,7 @@ class Rental
     }
   end
 
-  def to_json
+  def rental_to_json
     JSON.generate(to_hash)
   end
 end
