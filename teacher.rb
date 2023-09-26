@@ -11,4 +11,13 @@ class Teacher < Person
   def can_use_services?
     true
   end
+
+  def to_hash
+    {
+      'name' => @name,
+      'age' => @age,
+      'specialization' => @specialization,
+      'rentals' => @rental_IDs
+    }
+  end
 end
