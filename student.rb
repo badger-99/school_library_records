@@ -25,7 +25,7 @@ class Student < Person
       'age' => @age,
       'classroom' => @classroom.label,
       'parent_permission' => @parent_permission,
-      'rental_ids' => rental_ids
+      'has_rented' => @has_rented
     }
   end
 end

@@ -49,6 +49,7 @@ class PersonsManager
       permission = student_hash['parent_permission']
       student = create_student(age, name, permission)
       student.id = student_hash['id']
+      student.has_rented = student_hash['has_rented']
     end
 
     teachers_data = JSON.parse(File.read('teachers.json'))
@@ -58,6 +59,7 @@ class PersonsManager
       specialization = teacher_hash['specialization']
       teacher = create_teacher(age, name, specialization)
       teacher.id = teacher_hash['id']
+      teacher.has_rented = teacher_hash['has_rented']
     end
   end
 end
@@ -87,6 +89,7 @@ class BooksManager
     book_data.each do |book_hash|
       book = create_book(book_hash['title'], book_hash['author'])
       book.id = book_hash['id']
+      book.is_rented = book_hash['is_rented']
     end
   end
 end

@@ -1,5 +1,5 @@
 class Book
-  attr_accessor :title, :author, :id
+  attr_accessor :title, :author, :id, :is_rented
   attr_reader :rentals
 
   def initialize(title, author)
@@ -7,10 +7,11 @@ class Book
     @title = title
     @author = author
     @rentals = []
+    @is_rented = false
   end
 
   def add_rental(rental)
-    @rentals.push(rental)
+    @rentals.push(rental) unless @rentals.include?(rental)
   end
 
   def rental_ids
@@ -22,7 +23,7 @@ class Book
       'id' => @id,
       'title' => @title,
       'author' => @author,
-      'rental_ids' => rental_ids
+      'is_rented' => @is_rented
     }
   end
 end

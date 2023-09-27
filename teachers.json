@@ -1,1 +1,1 @@
-[{"id":3909,"name":"Gojo","age":26,"specialization":"OP","rental_ids":[]},{"id":6055,"name":"Iroh","age":62,"specialization":"Fire Bending","rental_ids":[]}]
+[{"id":3909,"name":"Gojo","age":26,"specialization":"OP","has_rented":null},{"id":6055,"name":"Iroh","age":62,"specialization":"Fire Bending","has_rented":true}]
