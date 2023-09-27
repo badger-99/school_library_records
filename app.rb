@@ -42,18 +42,20 @@ class PersonsManager
   end
 
   def load_from_file
-    students_data = JSON.parse(File.read('students.json'))
-    students_data.each do |student_hash|
-      age = student_hash['age']
-      name = student_hash['name']
-      permission = student_hash['parent_permission']
-      student = create_student(age, name, permission)
-      student.id = student_hash['id']
-      student.has_rented = student_hash['has_rented']
+    if File.exist?('students.json')
+      JSON.parse(File.read('students.json')).each do |student_hash|
+        age = student_hash['age']
+        name = student_hash['name']
+        permission = student_hash['parent_permission']
+        student = create_student(age, name, permission)
+        student.id = student_hash['id']
+        student.has_rented = student_hash['has_rented']
+      end
     end
 
-    teachers_data = JSON.parse(File.read('teachers.json'))
-    teachers_data.each do |teacher_hash|
+    return unless File.exist?('teachers.json')
+
+    JSON.parse(File.read('teachers.json')).each do |teacher_hash|
       age = teacher_hash['age']
       name = teacher_hash['name']
       specialization = teacher_hash['specialization']
@@ -85,6 +87,8 @@ class BooksManager
   end
 
   def load_from_file
+    return unless File.exist?('books.json')
+
     book_data = JSON.parse(File.read('books.json'))
     book_data.each do |book_hash|
       book = create_book(book_hash['title'], book_hash['author'])
@@ -117,6 +121,8 @@ class RentalsManager
   end
 
   def load_from_file
+    return unless File.exist?('rentals.json')
+
     JSON.parse(File.read('rentals.json'))
   end
 end
