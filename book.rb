@@ -14,10 +14,6 @@ class Book
     @rentals.push(rental) unless @rentals.include?(rental)
   end
 
-  def rental_ids
-    @rentals.map(&:id)
-  end
-
   def to_hash
     {
       'id' => @id,

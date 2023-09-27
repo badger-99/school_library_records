@@ -26,10 +26,6 @@ class Person < Nameable
     @rentals.push(rental) unless @rentals.include?(rental)
   end
 
-  def rental_ids
-    @rentals.map(&:id)
-  end
-
   private
 
   def of_age?
