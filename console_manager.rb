@@ -92,7 +92,7 @@ class ConsoleManager
     @persons_manager.create_student(age, name, parent_permission == 'Y')
 
     # Feedback
-    puts 'Student has been registered successfully.\n\n'
+    puts "\nStudent has been registered successfully.\n\n"
   end
 
   def add_teacher
@@ -108,7 +108,7 @@ class ConsoleManager
     @persons_manager.create_teacher(age, name, specialization)
 
     # Feedback
-    puts 'Teacher has been registered successfully.\n\n'
+    puts "\nTeacher has been registered successfully.\n\n"
   end
 
   # Option 4 - Register a book
@@ -155,7 +155,7 @@ class ConsoleManager
     @rentals_manager.create_rental(date, person, book)
 
     # Feedback
-    puts "\nRental has been recorded."
+    puts "\nRental has been recorded.\n\n"
   end
 
   # Option 6 - List all rentals for a given person ID
