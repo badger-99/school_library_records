@@ -5,6 +5,7 @@ module Main
   console_manager = ConsoleManager.new
   include MainMenu
   console_manager.load_data
+  console_manager.link_rentals
   puts 'Welcome to the School Library App!'
   loop do
     puts "#{MainMenu.display_menu}\n"

@@ -13,6 +13,17 @@ class ConsoleManager
     @persons_manager.load_from_file
   end
 
+  def link_rentals
+    people = @persons_manager.persons_list.select { |person| person.has_rented == true }
+    books = @books_manager.books_list.select { |book| book.is_rented == true }
+    @rentals_manager.load_from_file.each do |rental_hash|
+      date = rental_hash['date']
+      person = people.find { |individual| individual.id == rental_hash['person_id'] }
+      book = books.find { |volume| volume.id == rental_hash['book_id'] }
+      @rentals_manager.create_rental(date, person, book)
+    end
+  end
+
   # Option 1 - List all books
   def list_books(include_indexes: false)
     books = @books_manager.books_list
