@@ -5,14 +5,15 @@ class Rental
   attr_reader :person, :book, :id
 
   def initialize(date, person, book)
-    @id = Random.rand(1..10_000)
     @date = date
 
     @person = person
     person.add_rental(self) if person.respond_to?(:add_rental)
+    person.has_rented = true
 
     @book = book
     book.add_rental(self) if book.respond_to?(:add_rental)
+    book.is_rented = true
   end
 
   def title
@@ -29,7 +30,6 @@ class Rental
 
   def to_hash
     {
-      'id' => @id,
       'date' => @date,
       'person_id' => @person.id,
       'book_id' => @book.id
