@@ -28,8 +28,4 @@ class Student < Person
       'rental_ids' => rental_ids
     }
   end
-
-  def student_to_json
-    JSON.generate(to_hash)
-  end
 end

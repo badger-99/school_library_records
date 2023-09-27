@@ -22,8 +22,4 @@ class Teacher < Person
       'rental_ids' => rental_ids
     }
   end
-
-  def teacher_to_json
-    JSON.generate(to_hash)
-  end
 end
