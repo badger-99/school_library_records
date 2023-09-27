@@ -107,7 +107,7 @@ class RentalsManager
   end
 
   def save_to_file
-    rentals_data = rentals_list.map(&:to_json)
+    rentals_data = rentals_list.map(&:to_hash)
     File.open('rentals.json', 'w') do |file|
       file.puts JSON.generate(rentals_data)
     end

@@ -35,8 +35,4 @@ class Rental
       'book_id' => @book.id
     }
   end
-
-  def rental_to_json
-    JSON.generate(to_hash)
-  end
 end
