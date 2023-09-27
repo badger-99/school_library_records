@@ -1,6 +1,6 @@
 class Book
-  attr_accessor :title, :author
-  attr_reader :id, :rentals
+  attr_accessor :title, :author, :id
+  attr_reader :rentals
 
   def initialize(title, author)
     @id = Random.rand(1..10_000)
@@ -19,6 +19,7 @@ class Book
 
   def to_hash
     {
+      'id' => @id,
       'title' => @title,
       'author' => @author,
       'rental_ids' => rental_ids

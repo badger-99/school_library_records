@@ -73,11 +73,11 @@ class BooksManager
     end
   end
 
-  def load_from_file(json_file)
-    book_data = JSON.parse(json_file)
+  def load_from_file
+    book_data = JSON.parse(File.read('books.json'))
     book_data.each do |book_hash|
-      book = Book.new(book_hash['title'], book_hash['author'])
-      @books_list.push(book)
+      book = create_book(book_hash['title'], book_hash['author'])
+      book.id = book_hash['id']
     end
   end
 end
