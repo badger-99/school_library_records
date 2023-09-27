@@ -8,11 +8,9 @@ class ConsoleManager
   end
 
   # load books
-  def load_books
-    @books_manager.load_from_file(File.read('books.json'))
-    # books.each do |book|
-    #   puts book.is_a?(Hash)
-    # end
+  def load_data
+    @books_manager.load_from_file
+    @persons_manager.load_from_file
   end
 
   # Option 1 - List all books

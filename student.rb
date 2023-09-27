@@ -20,6 +20,7 @@ class Student < Person
 
   def to_hash
     {
+      'id' => @id,
       'name' => @name,
       'age' => @age,
       'classroom' => @classroom.label,

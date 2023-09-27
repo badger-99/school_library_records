@@ -30,7 +30,7 @@ class PersonsManager
   end
 
   def save_to_file
-    students_data = students_list.map(&:student_to_json)
+    students_data = students_list.map(&:to_hash)
     File.open('students.json', 'w') do |file|
       file.puts JSON.generate(students_data)
     end
@@ -38,6 +38,17 @@ class PersonsManager
     teachers_data = teachers_list.map(&:teacher_to_json)
     File.open('teachers.json', 'w') do |file|
       file.puts JSON.generate(teachers_data)
+    end
+  end
+
+  def load_from_file
+    students_data = JSON.parse(File.read('students.json'))
+    students_data.each do |student_hash|
+      age = student_hash['age']
+      name = student_hash['name']
+      permission = student_hash['parent_permission']
+      student = create_student(age, name, permission)
+      student.id = student_hash['id']
     end
   end
 end
