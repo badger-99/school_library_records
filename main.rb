@@ -4,6 +4,8 @@ require './menu'
 module Main
   console_manager = ConsoleManager.new
   include MainMenu
+  console_manager.load_data
+  console_manager.link_rentals
   puts 'Welcome to the School Library App!'
   loop do
     puts "#{MainMenu.display_menu}\n"
@@ -28,7 +30,7 @@ module Main
     when '6'
       console_manager.list_rental_for_id
     when '7'
-      puts 'Thank you for using this app!'
+      console_manager.exit
       break
     end
   end

@@ -28,6 +28,42 @@ class PersonsManager
     @teachers_list.push(teacher)
     teacher
   end
+
+  def save_to_file
+    students_data = students_list.map(&:to_hash)
+    File.open('students.json', 'w') do |file|
+      file.puts JSON.generate(students_data)
+    end
+
+    teachers_data = teachers_list.map(&:to_hash)
+    File.open('teachers.json', 'w') do |file|
+      file.puts JSON.generate(teachers_data)
+    end
+  end
+
+  def load_from_file
+    if File.exist?('students.json')
+      JSON.parse(File.read('students.json')).each do |student_hash|
+        age = student_hash['age']
+        name = student_hash['name']
+        permission = student_hash['parent_permission']
+        student = create_student(age, name, permission)
+        student.id = student_hash['id']
+        student.has_rented = student_hash['has_rented']
+      end
+    end
+
+    return unless File.exist?('teachers.json')
+
+    JSON.parse(File.read('teachers.json')).each do |teacher_hash|
+      age = teacher_hash['age']
+      name = teacher_hash['name']
+      specialization = teacher_hash['specialization']
+      teacher = create_teacher(age, name, specialization)
+      teacher.id = teacher_hash['id']
+      teacher.has_rented = teacher_hash['has_rented']
+    end
+  end
 end
 
 class BooksManager
@@ -41,6 +77,24 @@ class BooksManager
     book = Book.new(title, author)
     @books_list.push(book)
     book
+  end
+
+  def save_to_file
+    books_data = @books_list.map(&:to_hash)
+    File.open('books.json', 'w') do |file|
+      file.puts JSON.generate(books_data)
+    end
+  end
+
+  def load_from_file
+    return unless File.exist?('books.json')
+
+    book_data = JSON.parse(File.read('books.json'))
+    book_data.each do |book_hash|
+      book = create_book(book_hash['title'], book_hash['author'])
+      book.id = book_hash['id']
+      book.is_rented = book_hash['is_rented']
+    end
   end
 end
 
@@ -57,5 +111,18 @@ class RentalsManager
     rental = Rental.new(date, person, book)
     @rentals_list.push(rental)
     rental
+  end
+
+  def save_to_file
+    rentals_data = rentals_list.map(&:to_hash)
+    File.open('rentals.json', 'w') do |file|
+      file.puts JSON.generate(rentals_data)
+    end
+  end
+
+  def load_from_file
+    return unless File.exist?('rentals.json')
+
+    JSON.parse(File.read('rentals.json'))
   end
 end

@@ -2,25 +2,24 @@
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ](#faq)
-- [📝 License](#license)
+- [� Table of Contents](#-table-of-contents)
+- [📖 School Library Records ](#-school-library-records-)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Usage](#usage)
+    - [Run tests](#run-tests)
+    - [Deployment](#deployment)
+  - [👥 Authors ](#-authors-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 # 📖 School Library Records <a name="about-project"></a>
 
@@ -40,12 +39,6 @@
 ### Key Features <a name="key-features"></a>
 
 - **Use of the decorator design pattern.**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- [Live Demo Link]() - None
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,6 +88,12 @@ This project does not need to be deployed.
 - GitHub: [@badger-99](https://github.com/badger-99)
 - X: [@AlfredMkg](https://twitter.com/AlfredMkg)
 - LinkedIn: [in/alfredmkg](https://www.linkedin.com/in/alfredmkg)
+
+👤 **Henok**
+
+- GitHub: [@henokkhm](https://github.com/henokkhm)
+- X: [@henokkhm](https://twitter.com/henokkhm)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/henokkhm/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

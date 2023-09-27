@@ -1,3 +1,4 @@
+require 'json'
 require './person'
 
 class Student < Person
@@ -15,5 +16,16 @@ class Student < Person
 
   def play_hockey
     '¯\(ツ)/¯'
+  end
+
+  def to_hash
+    {
+      'id' => @id,
+      'name' => @name,
+      'age' => @age,
+      'classroom' => @classroom.label,
+      'parent_permission' => @parent_permission,
+      'has_rented' => @has_rented
+    }
   end
 end

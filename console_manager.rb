@@ -7,6 +7,23 @@ class ConsoleManager
     @rentals_manager = RentalsManager.new
   end
 
+  # load books
+  def load_data
+    @books_manager.load_from_file
+    @persons_manager.load_from_file
+  end
+
+  def link_rentals
+    people = @persons_manager.persons_list.select { |person| person.has_rented == true }
+    books = @books_manager.books_list.select { |book| book.is_rented == true }
+    @rentals_manager.load_from_file&.each do |rental_hash|
+      date = rental_hash['date']
+      person = people.find { |individual| individual.id == rental_hash['person_id'] }
+      book = books.find { |volume| volume.id == rental_hash['book_id'] }
+      @rentals_manager.create_rental(date, person, book)
+    end
+  end
+
   # Option 1 - List all books
   def list_books(include_indexes: false)
     books = @books_manager.books_list
@@ -75,7 +92,7 @@ class ConsoleManager
     @persons_manager.create_student(age, name, parent_permission == 'Y')
 
     # Feedback
-    puts 'Student has been registered successfully.\n\n'
+    puts "\nStudent has been registered successfully.\n\n"
   end
 
   def add_teacher
@@ -91,7 +108,7 @@ class ConsoleManager
     @persons_manager.create_teacher(age, name, specialization)
 
     # Feedback
-    puts 'Teacher has been registered successfully.\n\n'
+    puts "\nTeacher has been registered successfully.\n\n"
   end
 
   # Option 4 - Register a book
@@ -138,7 +155,7 @@ class ConsoleManager
     @rentals_manager.create_rental(date, person, book)
 
     # Feedback
-    puts "\nRental has been recorded."
+    puts "\nRental has been recorded.\n\n"
   end
 
   # Option 6 - List all rentals for a given person ID
@@ -162,5 +179,15 @@ class ConsoleManager
     rentals.each do |rental|
       puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
     end
+  end
+
+  # Option 7 - Save data to file and exit
+  def exit
+    puts 'Saving data to file...'
+    @persons_manager.save_to_file
+    @books_manager.save_to_file
+    @rentals_manager.save_to_file
+    puts 'Data has been saved!'
+    puts 'Thank you for using this app!'
   end
 end
