@@ -35,7 +35,7 @@ class PersonsManager
       file.puts JSON.generate(students_data)
     end
 
-    teachers_data = teachers_list.map(&:teacher_to_json)
+    teachers_data = teachers_list.map(&:to_hash)
     File.open('teachers.json', 'w') do |file|
       file.puts JSON.generate(teachers_data)
     end
@@ -49,6 +49,15 @@ class PersonsManager
       permission = student_hash['parent_permission']
       student = create_student(age, name, permission)
       student.id = student_hash['id']
+    end
+
+    teachers_data = JSON.parse(File.read('teachers.json'))
+    teachers_data.each do |teacher_hash|
+      age = teacher_hash['age']
+      name = teacher_hash['name']
+      specialization = teacher_hash['specialization']
+      teacher = create_teacher(age, name, specialization)
+      teacher.id = teacher_hash['id']
     end
   end
 end

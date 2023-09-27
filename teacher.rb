@@ -15,6 +15,7 @@ class Teacher < Person
 
   def to_hash
     {
+      'id' => @id,
       'name' => @name,
       'age' => @age,
       'specialization' => @specialization,
