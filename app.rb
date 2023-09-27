@@ -115,4 +115,8 @@ class RentalsManager
       file.puts JSON.generate(rentals_data)
     end
   end
+
+  def load_from_file
+    JSON.parse(File.read('rentals.json'))
+  end
 end
