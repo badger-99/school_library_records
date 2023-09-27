@@ -4,6 +4,7 @@ require './menu'
 module Main
   console_manager = ConsoleManager.new
   include MainMenu
+  console_manager.load_books
   puts 'Welcome to the School Library App!'
   loop do
     puts "#{MainMenu.display_menu}\n"

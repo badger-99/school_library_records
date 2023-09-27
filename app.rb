@@ -56,9 +56,17 @@ class BooksManager
   end
 
   def save_to_file
-    books_data = books_list.map(&:book_to_json)
+    books_data = @books_list.map(&:to_hash)
     File.open('books.json', 'w') do |file|
       file.puts JSON.generate(books_data)
+    end
+  end
+
+  def load_from_file(json_file)
+    book_data = JSON.parse(json_file)
+    book_data.each do |book_hash|
+      book = Book.new(book_hash['title'], book_hash['author'])
+      @books_list.push(book)
     end
   end
 end

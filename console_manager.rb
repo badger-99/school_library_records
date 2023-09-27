@@ -7,6 +7,14 @@ class ConsoleManager
     @rentals_manager = RentalsManager.new
   end
 
+  # load books
+  def load_books
+    @books_manager.load_from_file(File.read('books.json'))
+    # books.each do |book|
+    #   puts book.is_a?(Hash)
+    # end
+  end
+
   # Option 1 - List all books
   def list_books(include_indexes: false)
     books = @books_manager.books_list
