@@ -9,8 +9,8 @@ describe Decorator do
     end
   end
 
-  describe "#correct_name" do
-    it "delegates to the correct_name method of the nameable object" do
+  describe '#correct_name' do
+    it 'delegates to the correct_name method of the nameable object' do
       nameable = Nameable.new
       decorator = Decorator.new(nameable)
       expect { decorator.correct_name }.to raise_error(NotImplementedError)
