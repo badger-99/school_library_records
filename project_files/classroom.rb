@@ -8,7 +8,9 @@ class Classroom
   end
 
   def add_student(student)
+    return if @students.include?(student)
+
     @students.push(student)
-    student.classroom(self)
+    student.assign_classroom(self)
   end
 end
