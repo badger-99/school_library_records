@@ -42,7 +42,6 @@ describe Person do
 
   describe '#add_rental' do
     context 'Creating a Rental object automatically calls "add_rental"' do
-
       it 'adds a Rental object only once to the rentals array' do
         book = Book.new('Title', 'Author')
         person = Person.new(50, 'Cent')
