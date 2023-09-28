@@ -1,5 +1,5 @@
 require 'json'
-require './person'
+require_relative 'person'
 
 class Teacher < Person
   attr_reader :specialization
