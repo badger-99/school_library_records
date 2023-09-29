@@ -1,4 +1,4 @@
-require './nameable'
+require_relative 'nameable'
 
 class Person < Nameable
   attr_accessor :name, :age, :id, :has_rented
@@ -15,7 +15,11 @@ class Person < Nameable
   end
 
   def can_use_services?
-    true if of_age || @parent_permission
+    if of_age? || @parent_permission
+      true
+    else
+      false
+    end
   end
 
   def correct_name
@@ -29,6 +33,6 @@ class Person < Nameable
   private
 
   def of_age?
-    true if @age >= 18
+    true if @age.to_i >= 18
   end
 end

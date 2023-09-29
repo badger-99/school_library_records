@@ -1,5 +1,5 @@
-require './console_manager'
-require './menu'
+require './project_files/console_manager'
+require './project_files/menu'
 
 module Main
   console_manager = ConsoleManager.new
